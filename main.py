@@ -8,10 +8,11 @@ def main():
     description = str(sys.argv[2])
     token = str(sys.argv[3])
     main_dir = str(sys.argv[4])
+    private = bool(sys.argv[5])
     
     create_directory(main_directory=main_dir, filename=repo_name)
     
-    create_repo(repo_name,description,token)
+    create_repo(repo_name,description,token,private)
 
 def create_directory(main_directory, filename) -> None:
     path = os.join(main_directory, filename)
@@ -22,10 +23,12 @@ def create_directory(main_directory, filename) -> None:
     
     print("Directory %s already exists" % path)
 
-def create_repo(repo_name:str, description: str, token: str):
+def create_repo(repo_name:str, description: str, token: str, private:bool):
     user_url = "https://api.github.com/user/repos"
     
-    payload = {"name": repo_name, "description": description}
+    visibility = "public" if not private else "private"
+    
+    payload = {"name": repo_name, "description": description, "visibility": visibility}
     
     headers = {"Authorization": f"token {token}"}
     
