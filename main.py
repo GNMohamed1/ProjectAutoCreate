@@ -15,7 +15,7 @@ def main():
     create_repo(repo_name,description,token,private)
 
 def create_directory(main_directory, filename) -> None:
-    path = os.join(main_directory, filename)
+    path = os.path.join(main_directory, filename)
     if not os.path.exists(path):
         os.makedirs(path)
         print("Successfully created directory %s" % path)
