@@ -1,6 +1,11 @@
 #!/bin/bash
 
 function create {
+	EXPECTED_ARGS=6 # Update with the expected number of arguments
+	if [ $# -lt $EXPECTED_ARGS ]; then
+	 echo "Usage: $0 repo_name description Token main_directory private Username" # Update with your help message or usage instructions
+  	 return 1 # Exit with an error code
+	fi
 	python main.py $1 $2 $3 $4 $5
 	cd
 	cd $4
